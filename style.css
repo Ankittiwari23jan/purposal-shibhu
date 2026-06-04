@@ -1,0 +1,1376 @@
+/* ==========================================
+   ROMANTIC & CUTE PROPOSAL WEBSITE STYLES
+   Designed for Shreya ❤️
+   ========================================== */
+
+/* --- Modern Reset & Base --- */
+:root {
+    --bg-primary: #fdfbf7;
+    --primary-pink: #fb6f92;
+    --primary-pink-rgb: 251, 111, 146;
+    --dark-pink: #ff4d6d;
+    --light-pink: #ffe5ec;
+    --light-pink-alt: #ffb3c6;
+    --creamy-white: #fffdf9;
+    --gold: #ffb703;
+    --text-dark: #4a3e3d;
+    --text-muted: #8c7a78;
+    --card-bg: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --shadow-soft: 0 10px 30px rgba(251, 111, 146, 0.12);
+    --shadow-glowing: 0 0 25px rgba(251, 111, 146, 0.35);
+    --font-cursive: 'Sacramento', cursive;
+    --font-rounded: 'Comfortaa', sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-rounded);
+    background: linear-gradient(135deg, var(--light-pink) 0%, #fff0f3 50%, #ffe5ec 100%);
+    color: var(--text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Custom Selection Highlight */
+::selection {
+    background-color: var(--primary-pink);
+    color: white;
+}
+
+/* --- High Performance Background Canvas --- */
+#hearts-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* --- Typography Helpers --- */
+.font-cursive {
+    font-family: var(--font-cursive);
+}
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-large { font-size: 1.15rem; }
+.text-pink { color: var(--primary-pink); }
+.text-gold { color: var(--gold); }
+
+/* --- Buttons --- */
+.btn {
+    font-family: var(--font-rounded);
+    font-weight: 700;
+    padding: 12px 32px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.05rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--dark-pink) 100%);
+    color: white;
+}
+.btn-primary:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(251, 111, 146, 0.4);
+}
+
+.btn-yes {
+    background: linear-gradient(135deg, #ff4d6d 0%, #ff0a54 100%);
+    color: white;
+    font-size: 1.5rem;
+    padding: 18px 45px;
+    box-shadow: 0 10px 30px rgba(255, 10, 84, 0.3);
+}
+.btn-yes:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: var(--shadow-glowing);
+}
+
+.btn-no {
+    background-color: white;
+    color: var(--text-muted);
+    border: 2px solid var(--light-pink-alt);
+    transition: transform 0.15s ease-out; /* Super snappy evasion */
+}
+
+.btn-whatsapp {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+}
+.btn-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--primary-pink);
+    color: var(--primary-pink);
+}
+.btn-outline:hover {
+    background-color: var(--light-pink);
+    transform: translateY(-2px);
+}
+
+/* Pulsing micro-animation */
+.btn-pulse {
+    animation: pulseHeart 1.8s infinite;
+}
+
+/* --- Interactive Welcome Screen --- */
+#welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fff0f3 0%, var(--light-pink) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s;
+}
+
+#welcome-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.welcome-container {
+    text-align: center;
+    max-width: 500px;
+    padding: 30px;
+}
+
+.welcome-title {
+    font-family: var(--font-cursive);
+    font-size: 5rem;
+    color: var(--dark-pink);
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.03);
+}
+
+.welcome-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+/* Welcome Screen Envelope */
+.welcome-envelope-wrapper {
+    width: 200px;
+    height: 140px;
+    margin: 0 auto 50px auto;
+    position: relative;
+    cursor: pointer;
+}
+
+.envelope {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #f7a8b8;
+    border-radius: 0 0 10px 10px;
+    box-shadow: var(--shadow-soft);
+}
+
+.envelope::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-top: 75px solid #ffb3c6; /* Flap closed */
+    z-index: 4;
+    transform-origin: top;
+    transition: transform 0.5s ease;
+}
+
+/* Welcome envelope opening states via Javascript */
+.welcome-envelope-wrapper.opened .envelope::before {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope .pocket {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 100px solid #f28b9f;
+    border-right: 100px solid #f28b9f;
+    border-bottom: 70px solid #e56b82;
+    border-radius: 0 0 10px 10px;
+    z-index: 3;
+}
+
+.envelope .letter-preview {
+    position: absolute;
+    left: 15px;
+    bottom: 10px;
+    width: 170px;
+    height: 110px;
+    background-color: white;
+    border-radius: 8px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.6s ease;
+}
+
+.welcome-envelope-wrapper.opened .letter-preview {
+    transform: translateY(-50px);
+}
+
+.preview-heart {
+    font-size: 2.2rem;
+    animation: heartbeat 1.2s infinite;
+}
+
+/* --- Main Layout --- */
+#main-content {
+    opacity: 1;
+    transition: opacity 1s ease-in;
+}
+
+#main-content.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.main-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    box-shadow: 0 15px 35px rgba(251, 111, 146, 0.18);
+}
+
+/* --- Ambient Floating Music Player --- */
+.music-player-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    padding: 8px 16px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    z-index: 99;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.music-disc {
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary-pink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    animation: rotateDisc 3s linear infinite;
+    animation-play-state: paused;
+}
+
+.music-player-container.playing .music-disc {
+    animation-play-state: running;
+}
+
+.music-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+    max-width: 140px;
+}
+
+.song-title {
+    font-weight: 700;
+    color: var(--text-dark);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.song-status {
+    color: var(--text-muted);
+}
+
+.music-btn {
+    background: transparent;
+    border: none;
+    font-size: 0.95rem;
+    color: var(--primary-pink);
+    cursor: pointer;
+}
+
+/* Music Visualizer Bars */
+.music-visualizer {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 16px;
+    width: 18px;
+}
+
+.music-visualizer .bar {
+    width: 3px;
+    height: 3px;
+    background-color: var(--primary-pink);
+    border-radius: 3px;
+    transition: height 0.15s ease;
+}
+
+.music-player-container.playing .music-visualizer .bar:nth-child(1) { animation: bounceBar 0.8s ease infinite alternate; }
+.music-player-container.playing .music-visualizer .bar:nth-child(2) { animation: bounceBar 0.5s ease infinite alternate 0.2s; }
+.music-player-container.playing .music-visualizer .bar:nth-child(3) { animation: bounceBar 0.7s ease infinite alternate 0.1s; }
+.music-player-container.playing .music-visualizer .bar:nth-child(4) { animation: bounceBar 0.6s ease infinite alternate 0.3s; }
+
+/* --- Elegant Romantic Header --- */
+.romantic-header {
+    text-align: center;
+    padding: 80px 20px 40px 20px;
+}
+
+.sparkles {
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    margin-bottom: 5px;
+}
+
+.romantic-title {
+    font-size: 5rem;
+    color: var(--dark-pink);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.romantic-tagline {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+.heart-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.heart-divider .line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-pink), transparent);
+}
+
+.heart-divider i {
+    color: var(--primary-pink);
+    font-size: 1.2rem;
+}
+
+/* --- Sections --- */
+.section {
+    margin-bottom: 80px;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 45px;
+}
+
+/* Avatar container */
+.avatar-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    background-color: var(--light-pink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid white;
+}
+
+.avatar-emoji {
+    font-size: 3.5rem;
+    animation: floatingEmoji 3s ease-in-out infinite;
+}
+
+.shadow-glow {
+    box-shadow: 0 0 20px rgba(251, 111, 146, 0.3);
+}
+
+/* --- Polaroid Timeline Section --- */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Vertical central timeline line */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--light-pink-alt), var(--primary-pink), var(--light-pink-alt));
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 10px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+}
+
+/* Interactive Timeline circles */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px;
+    background-color: white;
+    border: 4px solid var(--primary-pink);
+    top: 50px;
+    border-radius: 50%;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover::after {
+    background-color: var(--primary-pink);
+    transform: scale(1.3);
+    box-shadow: 0 0 10px var(--primary-pink);
+}
+
+.left { left: 0; }
+.right {
+    left: 50%;
+}
+
+.right::after {
+    left: -10px;
+}
+
+.timeline-content {
+    position: relative;
+    padding: 30px;
+}
+
+/* Cute Polaroid Styles */
+.polaroid-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.polaroid-frame {
+    background-color: white;
+    padding: 12px 12px 24px 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.03);
+    width: 100%;
+    max-width: 240px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+}
+
+/* Simulated cute tape on Polaroid */
+.polaroid-frame::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 80px;
+    height: 20px;
+    background-color: rgba(251, 111, 146, 0.25);
+    border-radius: 2px;
+}
+
+/* Rotate items alternately for physical cute layout */
+.timeline-item:nth-child(even) .polaroid-frame {
+    transform: rotate(3deg);
+}
+.timeline-item:nth-child(odd) .polaroid-frame {
+    transform: rotate(-3deg);
+}
+
+.timeline-item:hover .polaroid-frame {
+    transform: rotate(0deg) scale(1.06);
+    box-shadow: 0 15px 30px rgba(251, 111, 146, 0.15);
+}
+
+.polaroid-image {
+    width: 100%;
+    height: 220px; /* Increased from 150px to make it a gorgeous vertical Instax portrait aspect ratio */
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--light-pink) 0%, #ffc2d1 100%);
+    color: white;
+    overflow: hidden; /* Ensure rotated image doesn't bleed out */
+}
+
+/* Polaroid image tag sizing */
+.polaroid-img-tag {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%; /* Shift focus upwards to keep faces fully visible and prevent cropping heads */
+    display: block;
+}
+
+/* Custom positioning for Polaroid 4 to crop the top umbrellas slightly and reveal more bottom space */
+.polaroid-img-tag.img-adjust-4 {
+    object-position: center 38%; /* Adjusted to 38% (shifted down) to reveal more bottom area without cutting faces */
+}
+
+/* Custom mathematical rotation styling to fit landscape 90deg sideways photos perfectly */
+.polaroid-img-tag.rotated-img {
+    width: 220px; /* matches new container height */
+    height: 216px; /* matches container width */
+    transform: rotate(90deg);
+    transform-origin: center;
+    object-fit: cover;
+}
+
+/* Unique pastel gradient backgrounds for timeline pictures */
+.p-img-1 { background: linear-gradient(135deg, #ffd166 0%, #ffb3c6 100%); }
+.p-img-2 { background: linear-gradient(135deg, #a2d2ff 0%, #ffb3c6 100%); }
+.p-img-3 { background: linear-gradient(135deg, #e8c1a0 0%, #fb6f92 100%); }
+.p-img-4 { background: linear-gradient(135deg, #b5e2fa 0%, #f7a8b8 100%); }
+
+.polaroid-fallback-icon {
+    font-size: 3rem;
+    opacity: 0.8;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+    animation: floatingEmoji 3.5s ease-in-out infinite alternate;
+}
+
+.polaroid-caption {
+    margin-top: 12px;
+    font-size: 1.6rem;
+    color: var(--text-dark);
+    text-align: center;
+}
+
+.timeline-content h3 {
+    margin-top: 15px;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    color: var(--dark-pink);
+}
+
+.timeline-content p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* --- Flippable Reasons Grid --- */
+.reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.flip-card {
+    background-color: transparent;
+    height: 200px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+/* Hover or active class rotation */
+.flip-card:hover .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.flip-card-front {
+    background: var(--card-bg);
+}
+
+.card-icon {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+}
+
+.tap-hint {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 10px;
+    border: 1px dashed var(--light-pink-alt);
+    padding: 3px 10px;
+    border-radius: 10px;
+}
+
+.flip-card-back {
+    background: linear-gradient(135deg, #fff0f3 0%, var(--light-pink) 100%);
+    color: var(--text-dark);
+    transform: rotateY(180deg);
+    font-size: 1.5rem;
+    line-height: 1.4;
+    border: 2px solid white;
+}
+
+.flip-card-back p {
+    max-width: 90%;
+}
+
+/* --- Unfolding Love Letter Envelope --- */
+.letter-envelope-container {
+    height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    margin: 40px auto;
+}
+
+.love-envelope {
+    width: 320px;
+    height: 200px;
+    background-color: #f7a8b8;
+    position: relative;
+    border-radius: 0 0 15px 15px;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s ease;
+}
+
+/* Envelope Back/Sides Layering */
+.love-envelope::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid #f28b9f;
+    border-right: 160px solid #f28b9f;
+    border-bottom: 110px solid #e56b82;
+    border-radius: 0 0 15px 15px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Top Flap */
+.love-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-top: 120px solid #ffb3c6;
+    z-index: 4;
+    transform-origin: top;
+    transition: transform 0.5s ease 0.3s, z-index 0.05s ease 0.4s;
+}
+
+/* Foldable Note Paper inside */
+.love-paper {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    width: 290px;
+    height: 170px;
+    background-color: var(--creamy-white);
+    border-radius: 8px;
+    padding: 25px 20px;
+    z-index: 2;
+    box-shadow: inset 0 0 15px rgba(251, 111, 146, 0.08);
+    transition: height 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.1s, transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) 0.1s, z-index 0.05s ease 0.3s;
+    overflow: hidden;
+}
+
+.paper-content {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    text-align: left;
+    color: var(--text-dark);
+}
+
+.paper-content h4 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--dark-pink);
+}
+
+.paper-content p {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+/* Heart Seal */
+.love-heart-seal {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translate(-50%, -20px);
+    z-index: 5;
+    background-color: var(--dark-pink);
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+/* Envelope Interactive Opening States */
+.love-envelope.open {
+    transform: translateY(100px);
+}
+
+.love-envelope.open .love-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.love-envelope.open .love-paper {
+    height: 420px;
+    transform: translateY(-280px);
+    z-index: 4;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.love-envelope.open .paper-content {
+    opacity: 1;
+    transition: opacity 0.5s ease 0.4s;
+}
+
+.love-envelope.open .love-heart-seal {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -20px) scale(0);
+}
+
+/* --- 5. Proposal Container --- */
+.proposal-section {
+    margin-top: 120px;
+    margin-bottom: 120px;
+}
+
+.proposal-card {
+    padding: 60px 40px;
+    border: 2px solid white;
+    box-shadow: var(--shadow-glowing);
+    position: relative;
+    overflow: hidden;
+}
+
+.proposal-emoji-bounce {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    animation: floatChibi 2s ease-in-out infinite alternate;
+}
+
+.proposal-title {
+    font-size: 6rem;
+    color: var(--dark-pink);
+    margin-bottom: 10px;
+}
+
+.proposal-question {
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    font-weight: 600;
+}
+
+/* The Interactive Buttons */
+.proposal-buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    min-height: 100px; /* Give room for expanding Yes */
+    position: relative;
+}
+
+.no-btn-hint {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: var(--primary-pink);
+    font-weight: 700;
+    min-height: 24px;
+}
+
+/* --- 6. Celebration Screen Overlay --- */
+#celebration-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 240, 243, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: opacity 0.5s ease;
+}
+
+#confetti-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.celebration-modal {
+    max-width: 600px;
+    background: white;
+    z-index: 2;
+    position: relative;
+    padding: 50px 40px;
+    box-shadow: 0 20px 50px rgba(251, 111, 146, 0.25);
+    border: 3px solid var(--light-pink);
+}
+
+.celebration-badge {
+    width: 70px;
+    height: 70px;
+    background-color: var(--light-pink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    margin: 0 auto 20px auto;
+}
+
+.celebration-title {
+    font-size: 4rem;
+    color: var(--dark-pink);
+    margin-bottom: 25px;
+}
+
+/* Chibi Emojis Animation */
+.cute-chibi-couple {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.chibi {
+    font-size: 3.5rem;
+    position: relative;
+}
+
+.chibi.male {
+    animation: floatChibi 2s ease-in-out infinite alternate;
+}
+
+.chibi.female {
+    animation: floatChibi 2s ease-in-out infinite alternate 0.3s;
+}
+
+.heart-float {
+    position: absolute;
+    font-size: 1.5rem;
+    top: -20px;
+    left: 50%;
+    transform: translate(-50%);
+    animation: heartPulseAndRise 1.5s infinite;
+}
+
+.celebration-msg {
+    font-size: 1.35rem;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+.celebration-submsg {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 35px;
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.celebration-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* --- Scroll Reveal Mechanics --- */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Footer --- */
+.main-footer {
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px dashed var(--light-pink-alt);
+    margin-top: 50px;
+}
+
+/* --- Keyframe Animations --- */
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+@keyframes beat-fast {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.beat-fast {
+    animation: beat-fast 1.2s infinite;
+}
+
+@keyframes pulseHeart {
+    0% { transform: scale(1); box-shadow: 0 5px 15px rgba(251, 111, 146, 0.3); }
+    50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(251, 111, 146, 0.55); }
+    100% { transform: scale(1); box-shadow: 0 5px 15px rgba(251, 111, 146, 0.3); }
+}
+
+@keyframes floatChibi {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-12px); }
+}
+
+@keyframes heartPulseAndRise {
+    0% { transform: translate(-50%, 0) scale(0.8); opacity: 1; }
+    50% { transform: translate(-50%, -15px) scale(1.2); opacity: 0.9; }
+    100% { transform: translate(-50%, -30px) scale(0.8); opacity: 0; }
+}
+
+@keyframes floatingEmoji {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(3deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes rotateDisc {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes bounceBar {
+    from { height: 3px; }
+    to { height: 16px; }
+}
+
+.scale-up {
+    animation: scaleUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scaleUp {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Mobile & Tablet Responsiveness System --- */
+
+/* 1. Large Tablets & Small Laptops (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .welcome-title {
+        font-size: 4.5rem;
+    }
+    
+    .romantic-title {
+        font-size: 4.5rem;
+    }
+
+    .proposal-title {
+        font-size: 5rem;
+    }
+
+    .main-container {
+        padding: 15px;
+    }
+
+    .glass-card {
+        padding: 30px;
+    }
+}
+
+/* 2. Standard Tablets / Portrait iPads (max-width: 992px) */
+@media (max-width: 992px) {
+    /* Transition the polaroid timeline to single-column view early
+       to ensure text inside the polaroids has ample reading space */
+    .timeline::after {
+        left: 20px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 15px;
+        margin-bottom: 40px;
+    }
+
+    .timeline-item::after {
+        left: 10px;
+        right: auto;
+    }
+
+    .right {
+        left: 0%;
+    }
+
+    .timeline-item:nth-child(even) .polaroid-frame {
+        transform: rotate(2deg);
+    }
+    .timeline-item:nth-child(odd) .polaroid-frame {
+        transform: rotate(-2deg);
+    }
+
+    .reasons-grid {
+        gap: 20px;
+        max-width: 700px;
+    }
+}
+
+/* 3. Standard Mobile Phones (max-width: 768px) */
+@media (max-width: 768px) {
+    .welcome-title {
+        font-size: 3.8rem;
+    }
+    
+    .romantic-title {
+        font-size: 3.5rem;
+        padding: 0 10px;
+    }
+
+    .romantic-header {
+        padding: 60px 10px 30px 10px;
+    }
+
+    .proposal-title {
+        font-size: 4rem;
+    }
+
+    .proposal-question {
+        font-size: 1.2rem;
+        padding: 0 10px;
+    }
+
+    .reasons-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+    }
+
+    .flip-card {
+        height: 180px;
+    }
+
+    /* Envelope Resizing for Mobile */
+    .letter-envelope-container {
+        height: 420px;
+    }
+
+    .love-envelope {
+        width: 280px;
+        height: 185px;
+    }
+    .love-envelope::before {
+        border-left: 140px solid #f28b9f;
+        border-right: 140px solid #f28b9f;
+        border-bottom: 100px solid #e56b82;
+    }
+    .love-flap {
+        border-left: 140px solid transparent;
+        border-right: 140px solid transparent;
+        border-top: 100px solid #ffb3c6;
+    }
+    .love-paper {
+        width: 250px;
+        height: 155px;
+        left: 15px;
+        bottom: 15px;
+    }
+    .love-envelope.open .love-paper {
+        height: 440px;
+        transform: translateY(-295px);
+    }
+    .paper-content h4 {
+        font-size: 1.5rem;
+    }
+    .paper-content p {
+        font-size: 0.82rem;
+    }
+
+    /* Buttons layout & pulse sizes */
+    .btn-yes {
+        font-size: 1.25rem;
+        padding: 15px 35px;
+    }
+    
+    .proposal-buttons-container {
+        gap: 15px;
+        flex-direction: column;
+    }
+    
+    .btn-no {
+        order: 2; /* keep NO below Yes */
+        width: 150px;
+    }
+
+    /* Celebration Screen Adaptations */
+    .celebration-title {
+        font-size: 2.8rem;
+    }
+
+    .celebration-modal {
+        padding: 30px 20px;
+    }
+
+    .cute-chibi-couple {
+        gap: 20px;
+    }
+
+    .chibi {
+        font-size: 2.8rem;
+    }
+
+    /* Shrink the floating music player slightly on mobile */
+    .music-player-container {
+        top: 12px;
+        right: 12px;
+        padding: 6px 12px;
+    }
+    
+    .music-info {
+        max-width: 90px;
+    }
+    
+    .song-title {
+        font-size: 0.7rem;
+    }
+}
+
+/* 4. Extra Small Phones e.g. iPhone SE (max-width: 480px) */
+@media (max-width: 480px) {
+    .welcome-title {
+        font-size: 3.2rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
+    
+    .romantic-title {
+        font-size: 2.8rem;
+    }
+
+    .proposal-title {
+        font-size: 3.2rem;
+    }
+
+    .welcome-envelope-wrapper {
+        width: 160px;
+        height: 112px;
+        margin-bottom: 30px;
+    }
+
+    .envelope .pocket {
+        border-left: 80px solid #f28b9f;
+        border-right: 80px solid #f28b9f;
+        border-bottom: 56px solid #e56b82;
+    }
+
+    .envelope::before {
+        border-left: 80px solid transparent;
+        border-right: 80px solid transparent;
+        border-top: 60px solid #ffb3c6;
+    }
+
+    .envelope .letter-preview {
+        width: 130px;
+        height: 85px;
+        left: 15px;
+        bottom: 8px;
+    }
+
+    .preview-heart {
+        font-size: 1.8rem;
+    }
+
+    /* Small Paper size */
+    .love-envelope {
+        width: 250px;
+        height: 165px;
+    }
+    .love-envelope::before {
+        border-left: 125px solid #f28b9f;
+        border-right: 125px solid #f28b9f;
+        border-bottom: 90px solid #e56b82;
+    }
+    .love-flap {
+        border-left: 125px solid transparent;
+        border-right: 125px solid transparent;
+        border-top: 90px solid #ffb3c6;
+    }
+    .love-paper {
+        width: 220px;
+        height: 135px;
+        left: 15px;
+        bottom: 15px;
+        padding: 15px 12px;
+    }
+    .love-envelope.open .love-paper {
+        height: 410px;
+        transform: translateY(-280px);
+    }
+    .paper-content h4 {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+    }
+    .paper-content p {
+        font-size: 0.76rem;
+        margin-bottom: 8px;
+    }
+
+    .celebration-title {
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+    }
+
+    .celebration-msg {
+        font-size: 1.1rem;
+    }
+
+    .celebration-submsg {
+        font-size: 0.85rem;
+        margin-bottom: 25px;
+    }
+
+    .btn {
+        padding: 10px 24px;
+        font-size: 0.95rem;
+    }
+}
+
