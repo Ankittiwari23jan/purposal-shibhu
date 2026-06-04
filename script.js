@@ -478,16 +478,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Close Modal helper
-    closeModalBtn.addEventListener('click', () => {
-        celebrationOverlay.classList.add('hidden');
-        confettiActive = false;
-    });
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', () => {
+            celebrationOverlay.classList.add('hidden');
+            confettiActive = false;
+        });
+    }
 
     // --- 8. PRE-COMPOSED WHATSAPP SENDER ---
-    whatsappBtn.addEventListener('click', () => {
-        const defaultLoveMsg = "I said YES! 💍💖 You made me the happiest girl in the world! I love you so much!";
-        const urlEncodedMsg = encodeURIComponent(defaultLoveMsg);
-        window.open(`https://api.whatsapp.com/send?text=${urlEncodedMsg}`, '_blank');
-    });
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', () => {
+            const defaultLoveMsg = "I said YES! 💍💖 You made me the happiest girl in the world! I love you so much!";
+            const urlEncodedMsg = encodeURIComponent(defaultLoveMsg);
+            window.open(`https://api.whatsapp.com/send?text=${urlEncodedMsg}`, '_blank');
+        });
+    }
 
 });
